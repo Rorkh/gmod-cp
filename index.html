@@ -1,0 +1,412 @@
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <title>demo.hestiacp.com:8083 - USERS - Hestia Control Panel</title><link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="/css/themes/default.min.css?v=1.5.10">
+  <link rel="stylesheet" href="/css/themes/dark.min.css?v=1.5.10">
+  <link href="/css/dependencies/animate.min.css?v=1.5.10" rel="stylesheet">
+  <link href="/css/dependencies/jquery-ui.custom.min.css?v=1.5.10" rel="stylesheet">
+  <link href="/css/dependencies/fontawesome.min.css?v=1.5.10" rel="stylesheet">
+  <script src="/inc/jquery/jquery-3.6.0.min.js"></script> 
+    <script>
+      var GLOBAL = {};
+      GLOBAL.FTP_USER_PREFIX = '';
+      GLOBAL.DB_USER_PREFIX = '';
+      GLOBAL.DB_DBNAME_PREFIX = '';
+      GLOBAL.AJAX_URL = '';
+    </script>
+  </head>
+  
+  <body class="body-user lang-en">
+  <div class="hidden" id="token" token="bb01ddc56beb0dc284781b3529dc8d14"></div>
+  <a href="#" class="to-top" title="Top">
+    <i class="fas fa-arrow-up"></i>
+  </a>
+  <a href="#" class="to-shortcuts" title="Shortcuts">
+    <i class="fas fa-keyboard"></i>
+  </a>
+  
+  <div class="l-header">
+    <div class="l-center">
+      <!-- Logo / Home Button -->
+      <a href="/list/user/" class="l-logo" title="Hestia Control Panel"></a>
+  
+      <!-- Left Menu -->
+      <div class="l-menu clearfix noselect active">
+        <!-- Records tab -->
+        <div class="l-menu__item       l-menu__item--active"><a href="/list/user/"><i class="fas fa-tasks panel-icon"></i>Records</a></div>
+        
+        <!-- File Manager tab -->
+                            <div class="l-menu__item "><a href="/fm/"><i class="fas fa-folder-open panel-icon"></i>Files</a></div>
+                      
+        <!-- Statistics tab-->
+        <div class="l-menu__item "><a href="/list/stats/"><i class="fas fa-chart-line panel-icon"></i>Statistics</a></div>
+      </div>
+  
+      <!-- Right Menu -->
+      <div class="l-profile noselect">
+        <div class="l-menu__item">
+          <!-- Logged in as / Usage Statistics Overview -->
+          <span class="pill usage">
+                      <span class="label-space-right"><i class="fas fa-user-tie icon-pad-right" title="Logged in as: System Administrator"></i><b>admin</b></span>
+            <span class="label-space-right"><i class="fas fa-hdd icon-pad-right" title="Disk: 29 mb"></i><b>29</b> mb</span>
+            <span><i class="fas fa-exchange-alt icon-pad-right" title="Bandwidth: 69 mb"></i><b>69</b> mb</span>
+          </span>
+        </div>
+  
+        <!-- Notifications -->
+                <div class="l-menu__item">
+            <a title="Notifications" class="l-profile__notifications  updates">
+              <i class="fas fa-bell  animated extended swing status-icon orange"></i>
+            </a>
+          </div>
+        
+        <!-- Server Settings -->
+                        
+            <div class="l-menu__item    "><a href="/list/server/" class="l-profile__serversettings" title="Server"><i class="fas fa-cog"></i></a></div>
+                
+        <!-- Edit User -->
+                          <div class="l-menu__item"><a href="/edit/user/?user=admin&amp;token=bb01ddc56beb0dc284781b3529dc8d14" title="admin (System Administrator)" class="l-profile__username"><i class="fas fa-user-circle"></i></a></div>
+                
+        <!-- Help / Documentation-->
+        <div class="l-menu__item"><a href="https://docs.hestiacp.com/" rel="noopener" title="Help" class="l-profile__help" target="_blank"><i class="fas fa-question-circle"></i></a></div>
+        
+        <!-- Logout -->
+                <div class="l-menu__item"><a href="/logout/?token=bb01ddc56beb0dc284781b3529dc8d14" title="Log out" class="l-profile__logout"><i class="fas fa-sign-out-alt"></i></a></div>
+            </div>
+    </div>
+  </div>
+  
+  <ul class="notification-container hidden animated fadeIn"></ul>
+  
+  <div class="l-content">
+    <div class="l-center">
+      <div class="l-stat" style="padding-top: 36px;">
+        <!-- Users tab -->
+                        <div class="l-stat__col l-stat__col--active">
+            <a href="/list/user/" title="Users: 2
+  Suspended: 0" style="height: 70px; min-height: 70px;">
+              <div class="l-stat__col-title">USERS&nbsp;&nbsp;<i class="fas fa-users"></i></div>
+              <ul style="visibility: visible;">
+                <li>Users: <span>2</span></li>
+                <li>Suspended: <span>0</span></li>
+              </ul>
+            </a>
+          </div>
+        
+        <!-- Web tab -->
+                          <div class="l-stat__col ">
+              <a href="/list/web/" title="Domains: 1
+  Aliases: 0
+  Limit: ∞
+  Suspended: 0" style="height: 70px; min-height: 70px;">
+                <div class="l-stat__col-title">WEB&nbsp;&nbsp;<i class="fas fa-globe-americas"></i></div>
+                <ul style="visibility: visible;">
+                  <li>Domains: <span>1 / <b>∞</b> (0)</span></li>
+                  <li>Aliases: <span>0 / <b>∞</b></span></li>
+                </ul>
+              </a>
+            </div>
+                
+        <!-- DNS tab -->
+                          <div class="l-stat__col ">
+              <a href="/list/dns/" title="Domains: 0
+  Limit: ∞
+  Suspended: 0" style="height: 70px; min-height: 70px;">
+                <div class="l-stat__col-title">DNS&nbsp;&nbsp;<i class="fas fa-atlas"></i></div>
+                <ul style="visibility: visible;">
+                  <li>Zones: <span>0 / <b>∞</b> (0)</span></li>
+                  <li>Records: <span>0 / <b>∞</b></span></li>
+                </ul>
+              </a>
+            </div>
+                
+        <!-- Mail tab -->
+                          <div class="l-stat__col ">
+              <a href="/list/mail/" title="Domains: 0
+  Limit: ∞
+  Suspended: 0" style="height: 70px; min-height: 70px;">
+                <div class="l-stat__col-title">MAIL&nbsp;&nbsp;<i class="fas fa-mail-bulk"></i></div>
+                <ul style="visibility: visible;">
+                  <li>Domains: <span>0 / <b>∞</b> (0)</span></li>
+                  <li>Accounts: <span>0 / <b>∞</b></span></li>
+                </ul>
+              </a>
+            </div>
+                
+        <!-- Databases tab -->
+                          <div class="l-stat__col ">
+              <a href="/list/db/" title="Databases: 0
+  Limit: ∞
+  Suspended: 0" style="height: 70px; min-height: 70px;">
+                <div class="l-stat__col-title">DB&nbsp;&nbsp;<i class="fas fa-database"></i></div>
+                <ul style="visibility: visible;">
+                  <li>Databases: <span>0 / <b>∞</b> (0)</span></li>
+                </ul>
+              </a>
+            </div>
+                
+        <!-- Cron tab -->
+                          <div class="l-stat__col ">
+              <a href="/list/cron/" title="Jobs: 1
+  Limit: ∞
+  Suspended: 2" style="height: 70px; min-height: 70px;">
+                <div class="l-stat__col-title">CRON&nbsp;&nbsp;<i class="fas fa-clock"></i></div>
+                <ul style="visibility: visible;">
+                  <li>Jobs: <span>11 / <b>∞</b> (2)</span></li>
+                </ul>
+              </a>
+            </div>
+                
+        <!-- Backups tab -->
+                          <div class="l-stat__col ">
+              <a href="/list/backup/" title="Backups: 1
+  Limit: 1" style="height: 70px; min-height: 70px;">
+                <div class="l-stat__col-title">BACKUPS&nbsp;&nbsp;<i class="fas fa-file-archive"></i></div>
+                <ul style="visibility: visible;">
+                  <li>Backups: <span>1 / 1</span></li>
+                </ul>
+              </a>
+            </div>
+                    </div>
+    </div>
+  
+    <div class="l-separator" style="margin-top: 180px;"></div>
+  <!-- Begin toolbar -->
+  <div class="l-center">
+    <div class="l-sort clearfix noselect" style="margin-top: 181px;">
+      <div class="l-unit-toolbar__buttonstrip">
+        <a href="/add/user/" id="btn-create" class="ui-button cancel" dir="ltr"><i class="fas fa-plus-circle status-icon green"></i>Add User</a>
+        <a href="/list/package/" class="ui-button cancel" dir="ltr"><i class="fas fa-box-open status-icon orange"></i>Packages</a>
+      </div>
+      <ul class="context-menu sort-order animated fadeIn" style="display:none;">
+        <li entity="sort-bandwidth" sort_as_int="1"><span class="name">Bandwidth <i class="fas fa-sort-alpha-down"></i></span><span class="up"><i class="fas fa-sort-alpha-up"></i></span></li>
+        <li entity="sort-date" sort_as_int="1"><span class="name ">Date <i class="fas fa-sort-alpha-down"></i></span><span class="up"><i class="fas fa-sort-alpha-up"></i></span></li>
+        <li entity="sort-disk" sort_as_int="1"><span class="name">Disk <i class="fas fa-sort-alpha-down"></i></span><span class="up"><i class="fas fa-sort-alpha-up"></i></span></li>
+        <li entity="sort-name"><span class="name active">Name <i class="fas fa-sort-alpha-down"></i></span><span class="up"><i class="fas fa-sort-alpha-up"></i></span></li>
+      </ul>
+      <div class="l-sort-toolbar clearfix">
+        <table>
+          <tbody><tr>
+            <td class="sort-by" title="Sort items">
+              sort by: <span>
+                <b>
+                                  Name <i class="fas fa-sort-alpha-down"></i>
+                </b>
+              </span>
+            </td>
+            <td class="l-sort-toolbar__search-box">
+              <form action="/search/" method="get">
+                <input type="hidden" name="token" value="bb01ddc56beb0dc284781b3529dc8d14">
+                <input type="text" name="q" class="search-input" value="" title="Search">
+                <button type="submit" class="l-sort-toolbar__filter-apply" onclick="return doSearch('/search/')" value="" title="Search"><i class="fas fa-search"></i></button>
+              </form>
+            </td>
+            <td>
+              <form action="/bulk/user/" method="post" id="objects">
+                <input type="hidden" name="token" value="bb01ddc56beb0dc284781b3529dc8d14">
+                <div class="l-select">
+                  <select class="" name="action">
+                    <option value="">Apply to selected</option>
+                    <option value="rebuild">Rebuild All</option>
+                    <option value="rebuild user">Rebuild User Profile</option>
+                    <option value="rebuild web">Rebuild Web Domains</option>
+                    <option value="rebuild dns">Rebuild DNS Zones</option>
+                    <option value="rebuild mail">Rebuild Mail Domains</option>
+                    <option value="rebuild db">Rebuild Databases</option>
+                    <option value="rebuild cron">Rebuild Cron Jobs</option>
+                    <option value="update counters">Update Usage Counters</option>
+                    <option value="suspend">Suspend</option>
+                    <option value="unsuspend">Unsuspend</option>
+                    <option value="delete">Delete</option>
+                  </select>
+                </div>
+                <button type="submit" class="l-sort-toolbar__filter-apply" value="" title="Apply to selected"><i class="fas fa-arrow-right"></i></button>
+              </form>
+            </td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+  </div>
+  <!-- End toolbar -->
+  
+  <div class="l-separator" style="margin-top: 225px; box-shadow: none; height: 1px;"></div>
+  
+  <div class="l-center units">
+  
+    <!-- Table header -->
+    <div class="table-header">
+      <div class="l-unit__col l-unit__col--right">
+        <div class="clearfix l-unit__stat-col--left super-compact">
+          <input id="toggle-all" type="checkbox" name="toggle-all" value="toggle-all" title="Select all" onchange="checkedAll('objects');">
+        </div>
+        <div class="clearfix l-unit__stat-col--left wide-3"><b>Name</b></div>
+        <div class="clearfix l-unit__stat-col--left compact-3"><b>&nbsp;</b></div>
+        <div class="clearfix l-unit__stat-col--left text-center"><b>Package</b></div>
+        <div class="clearfix l-unit__stat-col--left text-center super-compact"><b>IPs</b></div>
+        <div class="clearfix l-unit__stat-col--left text-center super-compact"><b><i class="fas fa-hdd" title="Disk"></i></b></div>
+        <div class="clearfix l-unit__stat-col--left text-center compact"><b><i class="fas fa-exchange-alt" title="Bandwidth"></i></b></div>
+        <div class="clearfix l-unit__stat-col--left text-center super-compact"><b><i class="fas fa-globe-americas" title="Web Domains"></i></b></div>
+        <div class="clearfix l-unit__stat-col--left text-center super-compact"><b><i class="fas fa-atlas" title="DNS Zones"></i></b></div>
+        <div class="clearfix l-unit__stat-col--left text-center super-compact"><b><i class="fas fa-mail-bulk" title="Mail Domains"></i></b></div>
+        <div class="clearfix l-unit__stat-col--left text-center super-compact"><b><i class="fas fa-database" title="Databases"></i></b></div>
+        <div class="clearfix l-unit__stat-col--left text-center super-compact"><b><i class="fas fa-clock" title="Cron Jobs"></i></b></div>
+        <div class="clearfix l-unit__stat-col--left text-center super-compact"><b><i class="fas fa-file-archive" title="Backups"></i></b></div>
+      </div>
+    </div>
+  
+    <!-- Begin user list item loop -->
+        <div class="l-unit animated fadeIn un-selected" v_section="user" v_unit_id="admin" sort-date="1608148465" sort-name="admin" sort-bandwidth="69" sort-disk="29" sort-star="0">
+        <div class="l-unit__col l-unit__col--right" style="display: table-cell">
+          <div class="clearfix l-unit__stat-col--left super-compact">
+            <input id="check1" class="ch-toggle" type="checkbox" title="Select" name="user[]" value="admin">
+          </div>
+          <div class="clearfix l-unit__stat-col--left wide-3 userlist-username">
+                        <b><a href="/login/?loginas=admin&amp;token=bb01ddc56beb0dc284781b3529dc8d14" title="Login as admin">admin <span style="font-weight: normal !important;">(System Administrator)</span></a></b>
+                      <br>
+            <div class="userlist-email"><b>Email:</b> info@hestiacp.com</div>
+          </div>
+          <!-- START QUICK ACTION TOOLBAR AREA -->
+          <div class="clearfix l-unit__stat-col--left text-right compact-3">
+            <div class="l-unit-toolbar__col l-unit-toolbar__col--right noselect">
+              <div class="actions-panel clearfix">
+                                <a href="/login/?loginas=admin&amp;token=bb01ddc56beb0dc284781b3529dc8d14" title="Login as admin"><i class="fas fa-sign-in-alt status-icon green status-icon dim icon-large"></i></a>
+                                              <div class="actions-panel__col actions-panel__edit shortcut-enter" key-action="href"><a href="/edit/user/?user=admin&amp;token=bb01ddc56beb0dc284781b3529dc8d14" title="Edit User"><i class="fas fa-pencil-alt status-icon orange status-icon dim"></i></a></div>
+                                              <!-- Hide suspend and delete buttons in the user list for primary 'admin' account -->
+                            </div>
+            </div>
+          </div>
+          <!-- END QUICK ACTION TOOLBAR AREA -->
+          <div class="clearfix l-unit__stat-col--left text-center">
+            <b>
+                            default											</b>
+          </div>
+          <div class="clearfix l-unit__stat-col--left text-center super-compact">1</div>
+          <div class="clearfix l-unit__stat-col--left text-center super-compact"><b>29</b> <span class="text-small">mb</span></div>
+          <div class="clearfix l-unit__stat-col--left text-center compact"><b>69</b> <span class="text-small">mb</span></div>
+          <div class="clearfix l-unit__stat-col--left text-center super-compact" title="1 Web Domains"><span class="jump-top badge gray raised"><b>1</b></span></div>
+          <div class="clearfix l-unit__stat-col--left text-center super-compact" title="0 DNS Zones"><span class="jump-top badge gray raised"><b>0</b></span></div>
+          <div class="clearfix l-unit__stat-col--left text-center super-compact" title="0 Mail Domains"><span class="jump-top badge gray raised"><b>0</b></span></div>
+          <div class="clearfix l-unit__stat-col--left text-center super-compact" title="0 Databases"><span class="jump-top badge gray raised"><b>0</b></span></div>
+          <div class="clearfix l-unit__stat-col--left text-center super-compact" title="11 Cron Jobs"><span class="jump-top badge gray raised"><b>11</b></span></div>
+          <div class="clearfix l-unit__stat-col--left text-center super-compact" title="1 Backups"><span class="jump-top badge gray raised"><b>1</b></span></div>
+        </div>
+      </div>
+        <div class="l-unit animated fadeIn un-selected selected-current" v_section="user" v_unit_id="hestia" sort-date="1608148594" sort-name="hestia" sort-bandwidth="0" sort-disk="21" sort-star="0">
+        <div class="l-unit__col l-unit__col--right" style="display: table-cell">
+          <div class="clearfix l-unit__stat-col--left super-compact">
+            <input id="check2" class="ch-toggle" type="checkbox" title="Select" name="user[]" value="hestia">
+          </div>
+          <div class="clearfix l-unit__stat-col--left wide-3 userlist-username">
+                        <b><a href="/login/?loginas=hestia&amp;token=bb01ddc56beb0dc284781b3529dc8d14" title="Login as hestia">hestia <span style="font-weight: normal !important;">(Hestia Control Panel)</span></a></b>
+                      <br>
+            <div class="userlist-email"><b>Email:</b> demo@hestiacp.com</div>
+          </div>
+          <!-- START QUICK ACTION TOOLBAR AREA -->
+          <div class="clearfix l-unit__stat-col--left text-right compact-3">
+            <div class="l-unit-toolbar__col l-unit-toolbar__col--right noselect">
+              <div class="actions-panel clearfix">
+                                <a href="/login/?loginas=hestia&amp;token=bb01ddc56beb0dc284781b3529dc8d14" title="Login as hestia"><i class="fas fa-sign-in-alt status-icon green status-icon dim icon-large"></i></a>
+                                              <div class="actions-panel__col actions-panel__edit shortcut-enter" key-action="href"><a href="/edit/user/?user=hestia&amp;token=bb01ddc56beb0dc284781b3529dc8d14" title="Edit User"><i class="fas fa-pencil-alt status-icon orange status-icon dim"></i></a></div>
+                                                              <div class="actions-panel__col actions-panel__suspend shortcut-s" key-action="js">
+                    <a id="suspend_link_2" class="data-controls do_suspend" title="Suspend">
+                      <i class="fas fa-pause status-icon highlight status-icon dim do_suspend"></i>
+                      <input type="hidden" name="suspend_url" value="/suspend/user/?user=hestia&amp;token=bb01ddc56beb0dc284781b3529dc8d14">
+                      <div id="suspend_dialog_2" class="confirmation-text-suspention hidden" title="Confirmation">
+                        <p class="confirmation">Are you sure you want to suspend user hestia?</p>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="actions-panel__col actions-panel__delete shortcut-delete" key-action="js">
+                    <a id="delete_link_2" class="data-controls do_delete" title="Delete">
+                      <i class="fas fa-trash status-icon red status-icon dim do_delete"></i>
+                      <input type="hidden" name="delete_url" value="/delete/user/?user=hestia&amp;token=bb01ddc56beb0dc284781b3529dc8d14">
+                      <div id="delete_dialog_2" class="confirmation-text-delete hidden" title="Confirmation">
+                        <p class="confirmation">Are you sure you want to delete user hestia?</p>
+                      </div>
+                    </a>
+                  </div>
+                                            </div>
+            </div>
+          </div>
+          <!-- END QUICK ACTION TOOLBAR AREA -->
+          <div class="clearfix l-unit__stat-col--left text-center">
+            <b>
+                            default											</b>
+          </div>
+          <div class="clearfix l-unit__stat-col--left text-center super-compact">0</div>
+          <div class="clearfix l-unit__stat-col--left text-center super-compact"><b>21</b> <span class="text-small">mb</span></div>
+          <div class="clearfix l-unit__stat-col--left text-center compact"><b>0</b> <span class="text-small">mb</span></div>
+          <div class="clearfix l-unit__stat-col--left text-center super-compact" title="1 Web Domains"><span class="jump-top badge gray raised"><b>1</b></span></div>
+          <div class="clearfix l-unit__stat-col--left text-center super-compact" title="1 DNS Zones"><span class="jump-top badge gray raised"><b>1</b></span></div>
+          <div class="clearfix l-unit__stat-col--left text-center super-compact" title="1 Mail Domains"><span class="jump-top badge gray raised"><b>1</b></span></div>
+          <div class="clearfix l-unit__stat-col--left text-center super-compact" title="0 Databases"><span class="jump-top badge gray raised"><b>0</b></span></div>
+          <div class="clearfix l-unit__stat-col--left text-center super-compact" title="0 Cron Jobs"><span class="jump-top badge gray raised"><b>0</b></span></div>
+          <div class="clearfix l-unit__stat-col--left text-center super-compact" title="1 Backups"><span class="jump-top badge gray raised"><b>1</b></span></div>
+        </div>
+      </div>
+    </div>
+  
+  <div id="vstobjects">
+    <div class="l-separator visible"></div>
+    <div class="l-center">
+      <div class="l-unit-ft">
+        <table class="data"></table>
+        <div class="data-count l-unit__col l-unit__col--right clearfix">
+          2 user accounts			</div>
+      </div>
+    </div>
+  </div><script src="/js/jquery/jquery.cookie.js?v=1.5.10"></script>
+  <script src="/js/jquery/jquery-ui.min.js?v=1.5.10"></script>
+  <script src="/js/jquery/jquery.finder.js?v=1.5.10"></script>
+  <script src="/js/hotkeys.js?v=1.5.10"></script>
+  <script src="/js/events.js?v=1.5.10"></script>
+  <script src="/js/app.js?v=1.5.10"></script>
+  <script src="/js/init.js?v=1.5.10"></script>
+  <script src="/js/i18n.js.php?v=1.5.10"></script>
+  <script src="/js/templates.js?v=1.5.10"></script>
+  <script>
+    $(function() {
+      hover_menu();
+    });
+  </script>
+  
+    </div>
+    <div title="Confirmation" class="confirmation-text-redirect hidden">
+      <p class="confirmation">Leave Page?</p>
+    </div>
+  
+    <div class="shortcuts animated fadeIn" style="display:none">
+      <div class="header">
+        <div class="title">Shortcuts</div>
+        <div class="close text-center">
+          <i class="fas fa-times"></i>
+        </div>
+      </div>
+      <ul>
+        <li><span class="key">a</span>Add New object</li>
+        <li><span class="key">Ctrl + Enter</span>Save Form</li>
+        <li><span class="key">Ctrl + Backspace</span>Cancel saving form</li>
+  
+        <li class="step-top"><span class="key">1</span>Go to WEB list</li>
+        <li><span class="key">2</span>Go to DNS list</li>
+        <li><span class="key">3</span>Go to MAIL list</li>
+        <li><span class="key">4</span>Go to DB list</li>
+        <li><span class="key">5</span>Go to CRON list</li>
+        <li><span class="key">6</span>Go to BACKUP list</li>
+      </ul>
+      <ul>
+        <li><span class="key">f</span>Focus on search</li>
+        <li class="step-top"><span class="key">h</span>Display/Close shortcuts</li>
+  
+        <li class="step-top"><span class="key bigger">←</span>Move backward through top menu</li>
+        <li><span class="key bigger">→</span>Move forward through top menu</li>
+        <li><span class="key">Enter</span>Enter focused element</li>
+  
+        <li class="step-top"><span class="key bigger">↑</span>Move up through elements list</li>
+        <li><span class="key bigger">↓</span>Move down through elements list</li>
+      </ul>
+    </div>
+  
+  
+  </body></html>
